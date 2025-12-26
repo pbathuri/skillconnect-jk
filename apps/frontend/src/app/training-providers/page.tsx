@@ -26,7 +26,7 @@ const providers = [
     rating: 4.9,
     reviews: 456,
     students: 5000,
-    courses: 15,
+    courseCount: 15,
     placement: 92,
     avgSalary: '₹32,000/month',
     image: 'https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=600',
@@ -284,7 +284,7 @@ export default function TrainingProvidersPage() {
                         </span>
                         <span className="flex items-center gap-1">
                           <GraduationCap className="h-4 w-4" />
-                          {provider.courses} courses
+                          {provider.courseCount} courses
                         </span>
                         <span className="flex items-center gap-1">
                           <Users className="h-4 w-4" />

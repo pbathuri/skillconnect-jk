@@ -30,7 +30,7 @@ const courseData = {
   provider: {
     name: 'NIIT Foundation',
     rating: 4.9,
-    courses: 15,
+    courseCount: 15,
     students: 5000,
     logo: 'https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=100',
   },
@@ -167,7 +167,7 @@ export default function CourseDetailPage({ params }: { params: { id: string } })
                     <Star className="h-4 w-4 text-amber-500 fill-amber-500" />
                     <span>{courseData.provider.rating}</span>
                     <span>•</span>
-                    <span>{courseData.provider.courses} courses</span>
+                    <span>{courseData.provider.courseCount} courses</span>
                     <span>•</span>
                     <span>{courseData.provider.students}+ students</span>
                   </div>
@@ -423,7 +423,7 @@ export default function CourseDetailPage({ params }: { params: { id: string } })
                   <div className="space-y-2 text-sm text-gray-600">
                     <div className="flex items-center gap-2">
                       <GraduationCap className="h-4 w-4 text-gray-400" />
-                      {courseData.provider.courses} courses offered
+                      {courseData.provider.courseCount} courses offered
                     </div>
                     <div className="flex items-center gap-2">
                       <Users className="h-4 w-4 text-gray-400" />

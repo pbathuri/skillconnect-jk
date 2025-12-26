@@ -34,7 +34,7 @@ We are committed to providing industry-relevant skills that lead to employment. 
   rating: 4.9,
   reviews: 456,
   students: 5000,
-  courses: 15,
+  courseCount: 15,
   placement: 92,
   avgSalary: '₹32,000/month',
   established: '2008',
@@ -170,7 +170,7 @@ export default function TrainingProviderDetailPage({ params }: { params: { id: s
                   <div className="text-sm text-gray-300">Students Trained</div>
                 </div>
                 <div className="bg-white/10 rounded-lg p-4 text-center">
-                  <div className="text-2xl font-bold">{providerData.courses}</div>
+                  <div className="text-2xl font-bold">{providerData.courseCount}</div>
                   <div className="text-sm text-gray-300">Courses</div>
                 </div>
                 <div className="bg-white/10 rounded-lg p-4 text-center">
