@@ -1,100 +1,103 @@
 import Link from 'next/link';
-import { GraduationCap, Mail, Phone, MapPin } from 'lucide-react';
-
-const footerLinks = {
-  Platform: [
-    { name: 'Browse Courses', href: '/courses' },
-    { name: 'How It Works', href: '/how-it-works' },
-    { name: 'EMI Calculator', href: '/emi-calculator' },
-    { name: 'Training Providers', href: '/training-providers' },
-  ],
-  Support: [
-    { name: 'Help Center', href: '/help' },
-    { name: 'FAQs', href: '/faqs' },
-    { name: 'Contact Us', href: '/contact' },
-    { name: 'Grievance Redressal', href: '/grievance' },
-  ],
-  Legal: [
-    { name: 'Terms of Service', href: '/terms' },
-    { name: 'Privacy Policy', href: '/privacy' },
-    { name: 'Loan Agreement', href: '/loan-terms' },
-    { name: 'Refund Policy', href: '/refund' },
-  ],
-  Partners: [
-    { name: 'For Training Providers', href: '/partners/tp' },
-    { name: 'For Banks', href: '/partners/banks' },
-    { name: 'For Employers', href: '/partners/employers' },
-    { name: 'API Documentation', href: '/api-docs' },
-  ],
-};
+import { Phone, Mail, MapPin, Youtube, Facebook, Twitter, Instagram } from 'lucide-react';
 
 export function Footer() {
   return (
     <footer className="bg-gray-900 text-gray-300">
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8">
+      <div className="container mx-auto px-4 py-16">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
           {/* Brand */}
-          <div className="lg:col-span-2">
-            <Link href="/" className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary-500 to-secondary-500 flex items-center justify-center">
-                <GraduationCap className="h-6 w-6 text-white" />
+          <div className="col-span-2 md:col-span-1">
+            <div className="flex items-center gap-2 mb-4">
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center text-white font-bold">
+                SK
               </div>
-              <div>
-                <span className="font-display text-xl font-bold text-white">SkillConnect</span>
-                <span className="text-primary-400 font-bold ml-1">JK</span>
-              </div>
-            </Link>
+              <span className="font-bold text-xl text-white">SkillConnect JK</span>
+            </div>
             <p className="text-sm text-gray-400 mb-4">
               Empowering Jammu & Kashmir youth with outcome-linked skill development loans.
-              Building a skilled workforce for a prosperous future.
             </p>
-            <div className="space-y-2">
-              <div className="flex items-center gap-2 text-sm">
-                <Mail className="h-4 w-4 text-primary-400" />
+            <div className="space-y-2 text-sm">
+              <div className="flex items-center gap-2">
+                <Mail className="h-4 w-4 text-amber-500" />
                 <span>support@skillconnectjk.gov.in</span>
               </div>
-              <div className="flex items-center gap-2 text-sm">
-                <Phone className="h-4 w-4 text-primary-400" />
+              <div className="flex items-center gap-2">
+                <Phone className="h-4 w-4 text-amber-500" />
                 <span>1800-XXX-XXXX (Toll Free)</span>
               </div>
-              <div className="flex items-center gap-2 text-sm">
-                <MapPin className="h-4 w-4 text-primary-400" />
-                <span>Srinagar, Jammu & Kashmir</span>
+              <div className="flex items-center gap-2">
+                <MapPin className="h-4 w-4 text-amber-500" />
+                <span>Srinagar, J&K</span>
               </div>
             </div>
           </div>
 
-          {/* Links */}
-          {Object.entries(footerLinks).map(([category, links]) => (
-            <div key={category}>
-              <h3 className="font-semibold text-white mb-4">{category}</h3>
-              <ul className="space-y-2">
-                {links.map((link) => (
-                  <li key={link.name}>
-                    <Link
-                      href={link.href}
-                      className="text-sm hover:text-primary-400 transition-colors"
-                    >
-                      {link.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+          {/* Platform */}
+          <div>
+            <h3 className="font-bold text-white mb-4">Platform</h3>
+            <ul className="space-y-2 text-sm">
+              <li><Link href="/courses" className="hover:text-amber-500 transition-colors">Browse Courses</Link></li>
+              <li><Link href="/learn" className="hover:text-amber-500 transition-colors">Free Learning</Link></li>
+              <li><Link href="/how-it-works" className="hover:text-amber-500 transition-colors">How It Works</Link></li>
+              <li><Link href="/emi-calculator" className="hover:text-amber-500 transition-colors">EMI Calculator</Link></li>
+              <li><Link href="/training-providers" className="hover:text-amber-500 transition-colors">Training Providers</Link></li>
+            </ul>
+          </div>
+
+          {/* Support */}
+          <div>
+            <h3 className="font-bold text-white mb-4">Support</h3>
+            <ul className="space-y-2 text-sm">
+              <li><Link href="/help" className="hover:text-amber-500 transition-colors">Help Center</Link></li>
+              <li><Link href="/faq" className="hover:text-amber-500 transition-colors">FAQs</Link></li>
+              <li><Link href="/contact" className="hover:text-amber-500 transition-colors">Contact Us</Link></li>
+              <li><Link href="/grievance" className="hover:text-amber-500 transition-colors">Grievance Redressal</Link></li>
+              <li><Link href="/bank-info" className="hover:text-amber-500 transition-colors">Bank Documentation</Link></li>
+            </ul>
+          </div>
+
+          {/* Legal */}
+          <div>
+            <h3 className="font-bold text-white mb-4">Legal</h3>
+            <ul className="space-y-2 text-sm">
+              <li><Link href="/terms" className="hover:text-amber-500 transition-colors">Terms of Service</Link></li>
+              <li><Link href="/privacy" className="hover:text-amber-500 transition-colors">Privacy Policy</Link></li>
+              <li><Link href="/loan-agreement" className="hover:text-amber-500 transition-colors">Loan Agreement</Link></li>
+              <li><Link href="/refund-policy" className="hover:text-amber-500 transition-colors">Refund Policy</Link></li>
+            </ul>
+          </div>
         </div>
 
-        <div className="border-t border-gray-800 mt-12 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <div className="text-sm text-gray-400">
-              © 2024 SkillConnect JK. A Government of J&K Initiative.
-            </div>
-            <div className="flex items-center gap-6">
-              <span className="text-xs text-gray-500">Supported by:</span>
-              <span className="text-sm">NSDC</span>
-              <span className="text-sm">CGFSSD</span>
-              <span className="text-sm">PSU Banks</span>
-            </div>
+        {/* Partners */}
+        <div className="border-t border-gray-800 pt-8 mb-8">
+          <p className="text-sm text-gray-400 mb-4">Supported by:</p>
+          <div className="flex flex-wrap items-center gap-6 text-sm">
+            <span className="bg-gray-800 px-4 py-2 rounded-lg">Government of J&K</span>
+            <span className="bg-gray-800 px-4 py-2 rounded-lg">NSDC</span>
+            <span className="bg-gray-800 px-4 py-2 rounded-lg">CGFSSD</span>
+            <span className="bg-gray-800 px-4 py-2 rounded-lg">J&K Bank</span>
+          </div>
+        </div>
+
+        {/* Bottom */}
+        <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-sm text-gray-500">
+            © 2024 SkillConnect JK. A Government of Jammu & Kashmir Initiative.
+          </p>
+          <div className="flex items-center gap-4">
+            <a href="#" className="text-gray-400 hover:text-amber-500 transition-colors">
+              <Youtube className="h-5 w-5" />
+            </a>
+            <a href="#" className="text-gray-400 hover:text-amber-500 transition-colors">
+              <Facebook className="h-5 w-5" />
+            </a>
+            <a href="#" className="text-gray-400 hover:text-amber-500 transition-colors">
+              <Twitter className="h-5 w-5" />
+            </a>
+            <a href="#" className="text-gray-400 hover:text-amber-500 transition-colors">
+              <Instagram className="h-5 w-5" />
+            </a>
           </div>
         </div>
       </div>

@@ -22,37 +22,15 @@ export function formatDate(date: Date | string): string {
   }).format(new Date(date));
 }
 
-export function formatPercentage(value: number): string {
-  return `${value.toFixed(1)}%`;
+export function calculateEMI(
+  principal: number,
+  annualRate: number,
+  tenureMonths: number
+): number {
+  const monthlyRate = annualRate / 12 / 100;
+  const emi =
+    (principal * monthlyRate * Math.pow(1 + monthlyRate, tenureMonths)) /
+    (Math.pow(1 + monthlyRate, tenureMonths) - 1);
+  return Math.round(emi);
 }
-
-export function generateApplicationNumber(): string {
-  return `SCJK${Date.now().toString(36).toUpperCase()}`;
-}
-
-// Loan status colors
-export const loanStatusColors: Record<string, string> = {
-  draft: 'bg-gray-100 text-gray-700',
-  submitted: 'bg-blue-100 text-blue-700',
-  under_review: 'bg-yellow-100 text-yellow-700',
-  bank_approved: 'bg-green-100 text-green-700',
-  bank_rejected: 'bg-red-100 text-red-700',
-  active: 'bg-emerald-100 text-emerald-700',
-  in_repayment: 'bg-purple-100 text-purple-700',
-  closed: 'bg-gray-100 text-gray-700',
-};
-
-// Sector icons
-export const sectorIcons: Record<string, string> = {
-  it_ites: '💻',
-  electronics: '🔌',
-  tourism_hospitality: '🏨',
-  healthcare: '🏥',
-  retail: '🛒',
-  manufacturing: '🏭',
-  agriculture: '🌾',
-  handicrafts: '🎨',
-  beauty_wellness: '💅',
-  apparel: '👗',
-};
 

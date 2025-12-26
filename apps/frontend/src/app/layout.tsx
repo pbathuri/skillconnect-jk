@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Outfit, Playfair_Display, JetBrains_Mono } from 'next/font/google';
+import { Outfit, Playfair_Display } from 'next/font/google';
 import './globals.css';
 import { Providers } from './providers';
 
@@ -13,11 +13,6 @@ const playfair = Playfair_Display({
   variable: '--font-playfair',
 });
 
-const jetbrains = JetBrains_Mono({
-  subsets: ['latin'],
-  variable: '--font-jetbrains',
-});
-
 export const metadata: Metadata = {
   title: 'SkillConnect JK - Skill Development Loans for J&K Youth',
   description:
@@ -27,19 +22,10 @@ export const metadata: Metadata = {
     'education loan',
     'J&K',
     'Kashmir',
-    'Jammu',
     'vocational training',
+    'free courses',
     'skill loan',
-    'PMKVY',
   ],
-  authors: [{ name: 'SkillConnect JK' }],
-  openGraph: {
-    title: 'SkillConnect JK',
-    description: 'Skill Development Loans for J&K Youth',
-    type: 'website',
-    locale: 'en_IN',
-    alternateLocale: ['hi_IN', 'ur_IN'],
-  },
 };
 
 export default function RootLayout({
@@ -49,9 +35,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${outfit.variable} ${playfair.variable} ${jetbrains.variable} font-sans antialiased`}
-      >
+      <body className={`${outfit.variable} ${playfair.variable} font-sans antialiased`}>
         <Providers>{children}</Providers>
       </body>
     </html>

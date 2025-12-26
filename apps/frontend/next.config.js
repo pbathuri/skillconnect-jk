@@ -1,36 +1,39 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
   images: {
-    domains: ['localhost', 'images.unsplash.com'],
-  },
-  // Enable i18n routing
-  i18n: {
-    locales: ['en', 'hi', 'ur', 'ks'],
-    defaultLocale: 'en',
-    localeDetection: true,
-  },
-  // PWA configuration for offline support
-  async headers() {
-    return [
+    remotePatterns: [
       {
-        source: '/(.*)',
-        headers: [
-          {
-            key: 'X-Content-Type-Options',
-            value: 'nosniff',
-          },
-          {
-            key: 'X-Frame-Options',
-            value: 'DENY',
-          },
-          {
-            key: 'X-XSS-Protection',
-            value: '1; mode=block',
-          },
-        ],
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
       },
-    ];
+      {
+        protocol: 'https',
+        hostname: 'yt3.googleusercontent.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'i.ytimg.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cdn.kastatic.org',
+      },
+      {
+        protocol: 'https',
+        hostname: 'd3njjcbhbojbot.cloudfront.net',
+      },
+      {
+        protocol: 'https',
+        hostname: 'nptel.ac.in',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.swayam.gov.in',
+      },
+    ],
+  },
+  experimental: {
+    serverActions: true,
   },
 };
 
