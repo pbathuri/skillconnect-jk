@@ -1,3 +1,5 @@
+Cursor linked correctly – test commit
+
 # SkillConnect JK
 
 A public-private partnership (PPP) platform providing outcome-linked skilling credit to youth in Jammu & Kashmir.
