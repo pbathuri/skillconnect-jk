@@ -20,8 +20,8 @@
 
 A financing rail that lets banks fund skilling **without government subsidies** by engineering accountability into the product:
 
-- **Milestone-based disbursement** — tranches of 30% / 30% / 20% / 20%
-- **Dynamic Training-Provider guarantees** — sized from a live **TPScore**
+- **Milestone-based disbursement** - tranches of 30% / 30% / 20% / 20%
+- **Dynamic Training-Provider guarantees** - sized from a live **TPScore**
 - **UPI AutoPay** repayments
 - **Risk-based pricing** via a 0–100 **Borrower Score**
 
@@ -43,8 +43,8 @@ skillconnect-jk/
 
 ### Stack
 
-**Backend** — NestJS · TypeScript · PostgreSQL (TypeORM) · Redis · Bull queue · JWT (Passport)
-**Frontend** — Next.js 14 · TypeScript · Tailwind + shadcn/ui · React Query + Zustand · next-intl (EN/HI/UR/KS)
+**Backend** - NestJS · TypeScript · PostgreSQL (TypeORM) · Redis · Bull queue · JWT (Passport)
+**Frontend** - Next.js 14 · TypeScript · Tailwind + shadcn/ui · React Query + Zustand · next-intl (EN/HI/UR/KS)
 
 ---
 
@@ -93,7 +93,7 @@ flowchart LR
 
 ## Quick start
 
-**Prereqs** — Node ≥ 18 · PostgreSQL ≥ 14 · Redis ≥ 7 · pnpm (recommended)
+**Prereqs** - Node ≥ 18 · PostgreSQL ≥ 14 · Redis ≥ 7 · pnpm (recommended)
 
 ```bash
 cd skillconnect-jk
