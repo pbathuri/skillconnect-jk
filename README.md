@@ -2,116 +2,121 @@
 
 # SkillConnect JK
 
-**A public-private partnership platform providing outcome-linked skilling credit to youth in Jammu & Kashmir.**
+**Outcome-linked skilling credit for youth in Jammu & Kashmir. Banks finance vocational training without government subsidy because every disbursement is gated on real progress.**
 
 <br/>
 
-<img src="https://img.shields.io/badge/Backend-NestJS-0D1117?style=for-the-badge&labelColor=161B22&color=FFA657" />
-<img src="https://img.shields.io/badge/Frontend-Next.js%2014-0D1117?style=for-the-badge&logo=nextdotjs&logoColor=58A6FF&labelColor=161B22" />
-<img src="https://img.shields.io/badge/DB-PostgreSQL%20%C2%B7%20Redis-0D1117?style=for-the-badge&labelColor=161B22&color=58A6FF" />
-<img src="https://img.shields.io/badge/i18n-EN%20%C2%B7%20HI%20%C2%B7%20UR%20%C2%B7%20KS-0D1117?style=for-the-badge&labelColor=161B22&color=8B949E" />
-<img src="https://img.shields.io/badge/Context-Policy%20Hackathon-0D1117?style=for-the-badge&labelColor=161B22&color=FFA657" />
+<img src="https://img.shields.io/badge/Stack-NestJS%20%C2%B7%20Next.js%2014-0D1117?style=for-the-badge&labelColor=161B22&color=58A6FF" />
+<img src="https://img.shields.io/badge/DB-PostgreSQL%20%C2%B7%20Redis-0D1117?style=for-the-badge&labelColor=161B22&color=FFA657" />
+<img src="https://img.shields.io/badge/i18n-EN%20%C2%B7%20HI%20%C2%B7%20UR%20%C2%B7%20KS-0D1117?style=for-the-badge&labelColor=161B22&color=FFA657" />
+<img src="https://img.shields.io/badge/Submission-J%26K%20Policy%20Hackathon-0D1117?style=for-the-badge&labelColor=161B22&color=8B949E" />
 
 </div>
 
 ---
 
-## TL;DR
+## The problem
 
-A financing rail that lets banks fund skilling **without government subsidies** by engineering accountability into the product:
+Three actors, three blockers:
 
-- **Milestone-based disbursement** - tranches of 30% / 30% / 20% / 20%
-- **Dynamic Training-Provider guarantees** - sized from a live **TPScore**
-- **UPI AutoPay** repayments
-- **Risk-based pricing** via a 0–100 **Borrower Score**
+- **Learners (18-29)** in J&K want vocational training but cannot pay course fees up front.
+- **Training providers** want enrolments but lack accountability mechanisms that justify trust.
+- **Banks** see skill loans as defaultable: no collateral, weak credit history, opaque outcomes.
 
-Built for the Jammu Policy Hackathon.
-
----
-
-## Architecture
-
-```
-skillconnect-jk/
-├── apps/
-│   ├── backend/          NestJS API server
-│   └── frontend/         Next.js web application
-├── packages/
-│   └── shared/           Shared types + utilities
-└── docker/               Docker configurations
-```
-
-### Stack
-
-**Backend** - NestJS · TypeScript · PostgreSQL (TypeORM) · Redis · Bull queue · JWT (Passport)
-**Frontend** - Next.js 14 · TypeScript · Tailwind + shadcn/ui · React Query + Zustand · next-intl (EN/HI/UR/KS)
+Subsidy programs paper over these blockers but are fiscally unsustainable. SkillConnect JK rewires the incentives so the loan economics work without government underwrite.
 
 ---
 
-## Features by persona
-
-### 🎓 Learners (18–29)
-- Browse accredited courses (IT/ITeS · Electronics · Tourism/Hospitality)
-- Apply for skill loans ₹5,000 – ₹1,50,000
-- Track learning progress and loan status
-- Automated EMI payments via UPI AutoPay
-
-### 🏫 Training providers
-- Manage courses and batches
-- Upload attendance and assessment data
-- Track milestone disbursements
-- View guarantee deposit status
-
-### 🏦 Banks
-- Review loan applications
-- Monitor portfolio performance
-- Process disbursements
-- Manage collections
-
-### 🛠️ Administrators
-- Accredit training providers
-- Configure policies and parameters
-- Monitor system KPIs
-- Generate reports
-
----
-
-## Money flow
+## How it works
 
 ```mermaid
 flowchart LR
-    B[Bank] -->|1: approve| L[Loan]
-    L -->|30% tranche 1| T[Training Provider]
-    T -->|attendance + assessments| S[SkillConnect]
-    S -->|milestone met| L
-    L -->|30% / 20% / 20%| T
-    L -.->|UPI AutoPay| B
-    S -->|TPScore| G[TP Guarantee<br/>deposit]
+    L[Learner<br/>applies for loan] --> BS[Borrower Score<br/>0-100 index]
+    BS --> B[Bank<br/>approves tranche 1]
+    B -->|30%| TP[Training Provider]
+    TP -->|attendance + assessment| MS[Milestone gate]
+    MS -->|pass| B2[Tranche 2 - 30%]
+    B2 --> TP
+    TP -->|certification| MS2[Cert gate]
+    MS2 --> B3[Tranche 3 - 20%]
+    MS2 --> CB[Completion bonus<br/>tranche 4 - 20%]
+    L -->|step-up EMI<br/>50% then 100%| R[UPI AutoPay<br/>repayment]
+    TP -.guarantee deposit.-> TPS[TPScore<br/>completion / cert / placement]
+    TPS -.dynamic.-> B
 ```
+
+Four design choices do most of the work:
+
+1. **Milestone-based disbursements (30 / 30 / 20 / 20)** - banks release the next tranche only when the previous milestone is verified.
+2. **Training Provider guarantee deposits** - dynamically sized by **TPScore** (30% completion rate + 25% certification rate + 20% placement rate). Bad providers post bigger collateral.
+3. **Borrower Score (0-100)** - identity, education, income, course fit, commitment, community endorsement. Replaces missing credit history.
+4. **UPI AutoPay step-up EMI** - 50% of the EMI for the first six months while income stabilises, then 100%. Reduces early-default risk.
+
+---
+
+## What's in the repo
+
+| Path | Stack | Purpose |
+|------|-------|---------|
+| `apps/backend/` | NestJS + TypeORM | API, auth, loans, milestones, TPScore, Bull queues, Swagger docs |
+| `apps/frontend/` | Next.js 14 + Tailwind + shadcn/ui | Learner / TP / Bank / Admin portals, React Query, next-intl (EN/HI/UR/KS) |
+| `apps/backend/src/modules/` | - | `auth`, `loans`, `risk-scoring`, `training-providers`, `banks`, `courses`, `notifications`, `admin` |
+| `docker-compose.yml` | Postgres + Redis | Local dev orchestration |
+| `Submission_documents/` | PDFs | Hackathon submission - PRD, architecture, security checklist, UX spec, ops playbook, risk policy, multi-bank expansion |
 
 ---
 
 ## Quick start
 
-**Prereqs** - Node ≥ 18 · PostgreSQL ≥ 14 · Redis ≥ 7 · pnpm (recommended)
-
 ```bash
-cd skillconnect-jk
-pnpm install
-
-# Backend
-cd apps/backend
-cp .env.example .env
-pnpm dev
-
-# Frontend (separate terminal)
-cd apps/frontend
-cp .env.example .env
-pnpm dev
+# Prereqs: Node 20+, Docker
+npm install
+docker compose up -d                    # Postgres + Redis
+npm run db:migrate && npm run db:seed
+npm run dev
+# Frontend: http://localhost:3000
+# Backend:  http://localhost:4000/api/v1   (Swagger at /api/docs)
 ```
+
+Default seeded users land in `apps/backend/scripts/seed.ts` - one of each role (learner, TP, bank, admin) so you can walk every flow without registration.
+
+---
+
+## User flows at a glance
+
+**Learner** - browse accredited courses (IT/ITeS, Electronics, Tourism/Hospitality), apply for ₹5K-₹1.5L loans, track milestones, see EMI schedule, repay via UPI AutoPay.
+
+**Training Provider** - publish courses, enrol batches, upload attendance + assessments, monitor TPScore, watch milestone payouts hit the dashboard.
+
+**Bank** - approve loans against Borrower Score, monitor portfolio KPIs, process collections, view TP exposure.
+
+**Admin (J&K govt)** - accredit training providers, configure risk policies and pricing, generate compliance reports.
+
+---
+
+## Submission context
+
+Built as a J&K Policy Hackathon submission. The repo ships with the full submission packet under [`Submission_documents/`](./Submission_documents/):
+
+- Product Requirements Document
+- Backend Architecture & Tech Stack
+- Application Flow Document
+- Design & UX Specification
+- Risk & Credit Policy Appendix
+- Security & Compliance Checklist
+- Pilot Operations Playbook
+- Multi-Bank Aggregator Expansion Proposal
+
+The PDFs reference back to the modules in `apps/backend/src/modules/` so reviewers can verify each policy claim against working code.
+
+---
+
+## License
+
+Proprietary to the Government of Jammu & Kashmir for the duration of the hackathon. Code authored by [@pbathuri](https://github.com/pbathuri); contributions and queries welcome.
 
 ---
 
 <div align="center">
-<sub>Policy hackathon submission · Part of <a href="https://github.com/pbathuri">@pbathuri</a>'s <a href="https://github.com/pbathuri/Map_Projects_MAC">project portfolio</a></sub>
+<sub>Part of <a href="https://github.com/pbathuri">@pbathuri</a>'s <a href="https://github.com/pbathuri/Map_Projects_MAC">project portfolio</a> - public-sector fintech.</sub>
 </div>
